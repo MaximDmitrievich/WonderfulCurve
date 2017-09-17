@@ -4,9 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WonderfulCurve"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="800">
+    <Window.Resources>
+        <Style TargetType="Canvas" x:Key="Menu">
+            <Setter Property="Background" Value="Aquamarine"/>
+        </Style>
+        <Style TargetType="Button" x:Key="Refresh">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <oxy:PlotView x:Name="Plot" Grid.Row="0" Model="{Binding PlotModel}" Margin="10" />
+        <Canvas Grid.Row="1"  Style="{StaticResource Menu}" />
+        <StackPanel Grid.Row="1">
+            <Slider  x:Name="AproximateX" Minimum="-40" Maximum="40" Value="{Binding Path=PlotModel.Axes[0].Minimum, Mode=TwoWay}" Margin="5" Width="200" TickFrequency ="2" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" ValueChanged="AproximateX_OnValueChanged"/>
+            <Slider  x:Name="AproximateY" Minimum="-40" Maximum="40" Value="{Binding Path=PlotModel.Axes[1].Minimum, Mode=TwoWay}" Margin="5" Width="200" TickFrequency="2" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" ValueChanged="AproximateY_OnValueChanged"/>
+            <Slider  x:Name="ParameterValue" Minimum="-100" Maximum="100" Value="{Binding Path=PlotModel.Line.A}" Margin="5" Width="200" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" ValueChanged="ParameterValue_OnValueChanged" />
+            
+        </StackPanel>
         
     </Grid>
+
 </Window>

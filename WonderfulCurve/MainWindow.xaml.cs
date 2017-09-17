@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OxyPlot;
+using WonderfulCurve.ViewModels;
 
 namespace WonderfulCurve
 {
@@ -20,9 +22,36 @@ namespace WonderfulCurve
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private ViewModels.MainWindowModel _viewModel;
+
         public MainWindow()
         {
+            _viewModel = new MainWindowModel();
+            DataContext = _viewModel;
             InitializeComponent();
+        }
+
+        private void ParameterValue_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            _viewModel.Update(ParameterValue.Value);
+            _viewModel.PlotModel.InvalidatePlot(true);
+        }
+
+        private void AproximateX_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (IsInitialized)
+            {
+                _viewModel.PlotModel.InvalidatePlot(true);
+            }
+        }
+
+        private void AproximateY_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (IsInitialized)
+            {
+                _viewModel.PlotModel.InvalidatePlot(true);
+            }
         }
     }
 }
