@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WonderfulCurve.WonderfulLine
 {
-    class Line
+    public class Line
     {
         private double _a;
         private Func<double, double> _function;

@@ -12,46 +12,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
 using OxyPlot;
-using WonderfulCurve.ViewModels;
+using WonderfulCurve.ViewModel;
 
 namespace WonderfulCurve
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Made by Eremin Maxim 308
+    /// Plot visualization by function x^(3/2) + y^(3/2) = a^(3/2)
+    /// Used: Oxyplot, MVVM, WPF, C#
     /// </summary>
     public partial class MainWindow : Window
     {
 
-        private ViewModels.MainWindowModel _viewModel;
+        private static MainWindowModel Vm => ViewModelLocator.MainWindowModel;
 
         public MainWindow()
         {
-            _viewModel = new MainWindowModel();
-            DataContext = _viewModel;
+            DataContext = Vm;
             InitializeComponent();
         }
+        
 
-        private void ParameterValue_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void ParameterValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            _viewModel.Update(ParameterValue.Value);
-            _viewModel.PlotModel.InvalidatePlot(true);
+            Vm.ChangeValueCommand?.Execute(null);
         }
 
-        private void AproximateX_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void YValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (IsInitialized)
-            {
-                _viewModel.PlotModel.InvalidatePlot(true);
-            }
+            Vm.ApproximateY?.Execute(null);
         }
 
-        private void AproximateY_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void XValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (IsInitialized)
-            {
-                _viewModel.PlotModel.InvalidatePlot(true);
-            }
+            Vm.ApproximateY?.Execute(null);
         }
     }
 }
