@@ -1,3 +1,4 @@
 # WonderfulCurve
 Building wonderful curve line with oxyplot on C#. 
-Function x^(3/2) + y^(3/2) = a^(3/2)
+
+Function x^(2/3) + y^(2/3) = a^(2/3)
