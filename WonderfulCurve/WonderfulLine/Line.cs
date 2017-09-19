@@ -53,7 +53,7 @@ namespace WonderfulCurve.WonderfulLine
 
         private double FunctionF(double t)
         {
-            return Math.Pow((A * Math.Pow(A, 1.0 / 2.0) - Math.Pow(t, 3.0 / 2.0)), 2.0 / 3.0);
+            return Math.Pow(A, 2.0 / 3.0) * Math.Pow(Math.Pow(A, 2.0 / 3.0) - Math.Pow(t, 2.0 / 3.0), 1.0 / 2.0) - Math.Pow(Math.Pow(A, 2.0 / 3.0) - Math.Pow(t, 2.0 / 3.0), 1.0 / 2.0) * Math.Pow(t, 2.0 / 3.0);
         }
     }
 }

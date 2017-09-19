@@ -58,7 +58,7 @@ namespace WonderfulCurve.ViewModel
         private void SetUp()
         {
             PlotModel.Title = "Wonderful Line";
-            PlotModel.LegendTitle = "x^(3/2) + y^(3/2) = a^(3/2)";
+            PlotModel.LegendTitle = "x^(2/3) + y^(2/3) = a^(2/3)";
             PlotModel.LegendOrientation = LegendOrientation.Horizontal;
             PlotModel.LegendPlacement = LegendPlacement.Outside;
             PlotModel.LegendBackground = OxyColor.FromAColor(200, OxyColors.White);
